@@ -1,0 +1,236 @@
+:root {
+  --primary: #0F2A4A;
+  --accent: #FF8A3D;
+  --trade: #0E9F6E;
+  --wishlist: #E91E63;
+  --on-primary: #FFFFFF;
+
+  --background: #FAFAFC;
+  --surface: #FFFFFF;
+  --surface-alt: #F3F5F9;
+  --text-primary: #16233B;
+  --text-secondary: #6B7385;
+  --border: #E7ECF3;
+
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
+  --shadow: 0 4px 20px rgba(15, 42, 74, 0.08);
+  --max-width: 880px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0A0E1A;
+    --surface: #131A2A;
+    --surface-alt: #1A2235;
+    --text-primary: #EDF1FA;
+    --text-secondary: #98A2B8;
+    --border: #232D42;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--background);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover { text-decoration: underline; }
+
+img { max-width: 100%; display: block; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Header */
+.site-header {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.site-header .container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.site-header img {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+}
+.site-header .brand-name {
+  font-weight: 800;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+/* Hero */
+.hero {
+  padding: 64px 0 48px;
+  text-align: center;
+}
+.hero img.icon {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-lg);
+  margin: 0 auto 24px;
+  box-shadow: var(--shadow);
+}
+.hero h1 {
+  font-size: 34px;
+  font-weight: 800;
+  margin: 0 0 12px;
+  color: var(--text-primary);
+}
+.hero p.pitch {
+  font-size: 18px;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 32px;
+}
+
+.badge-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+.badge:hover { text-decoration: none; opacity: 0.9; }
+.badge-primary {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.badge-accent {
+  background: var(--accent);
+  color: var(--on-primary);
+}
+.badge-outline {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text-primary);
+}
+.badge-soon {
+  background: var(--surface-alt);
+  color: var(--text-secondary);
+  border: 1.5px dashed var(--border);
+}
+
+/* Features */
+.features {
+  padding: 48px 0;
+}
+.features h2 {
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: var(--text-primary);
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.feature-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+.feature-card h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+.feature-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Footer */
+.site-footer {
+  padding: 40px 0;
+  border-top: 1px solid var(--border);
+  margin-top: 48px;
+  text-align: center;
+}
+.site-footer .links {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.site-footer .links a {
+  color: var(--text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+}
+.site-footer .copyright {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+/* Legal / privacy pages */
+.legal {
+  padding: 48px 0 64px;
+}
+.legal h1 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.legal .updated {
+  color: var(--text-secondary);
+  font-size: 13px;
+  margin-bottom: 32px;
+}
+.legal h2 {
+  font-size: 19px;
+  margin-top: 36px;
+  margin-bottom: 10px;
+  color: var(--text-primary);
+}
+.legal p {
+  color: var(--text-secondary);
+  margin: 0 0 14px;
+}
+.legal ul {
+  color: var(--text-secondary);
+  padding-left: 20px;
+}
+.legal .callout {
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  margin: 20px 0;
+}
+.legal .callout p { color: var(--text-primary); margin: 0; }
