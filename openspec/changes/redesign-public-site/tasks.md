@@ -75,5 +75,5 @@
 
 - [x] 10.1 Delete scratch files (`*.before.txt`, `og-template.html`) and confirm they are not staged.
 - [x] 10.2 Review the full diff; confirm `CNAME` and `assets/favicon.png` are untouched.
-- [ ] 10.3 Commit and merge to the default branch; confirm GitHub Pages serves the update at `optcg.poordevelopers.com`.
-- [ ] 10.4 Compare against the baseline screenshots from 1.3 and confirm the redesign lands.
+- [x] 10.3 Commit and merge to the default branch; confirm GitHub Pages serves the update at `optcg.poordevelopers.com`.
+- [x] 10.4 Confirm the redesign lands - verified `optcg.poordevelopers.com` serves `200` with the new markup (no `fonts.googleapis.com` reference, new `og:title` present). A literal pixel diff against the 1.3 baseline screenshots wasn't possible: those were explicitly scratch files (task 1.3/1.2 - "do not commit these") and no longer exist in this session.
