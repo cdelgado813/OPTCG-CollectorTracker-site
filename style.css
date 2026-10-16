@@ -34,14 +34,6 @@
   --elevation-1: 0 1px 2px rgba(0, 0, 0, 0.4);
   --elevation-2: 0 24px 60px -20px rgba(0, 0, 0, 0.7);
 
-  /* Atmosphere behind the hero */
-  --glow: radial-gradient(
-    62% 80% at 78% 12%,
-    rgba(255, 138, 61, 0.16) 0%,
-    rgba(255, 138, 61, 0.05) 38%,
-    transparent 72%
-  );
-
   /* Type */
   --font-display: "Segoe UI Variable Display", "Segoe UI", -apple-system,
     BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
@@ -107,12 +99,6 @@
     --elevation-1: 0 1px 2px rgba(26, 29, 36, 0.06);
     --elevation-2: 0 20px 48px -16px rgba(26, 29, 36, 0.18);
 
-    --glow: radial-gradient(
-      62% 80% at 78% 12%,
-      rgba(255, 138, 61, 0.18) 0%,
-      rgba(255, 138, 61, 0.06) 38%,
-      transparent 72%
-    );
 
     color-scheme: light;
   }
@@ -227,9 +213,7 @@ a:hover {
    -------------------------------------------------------------------------- */
 
 .site-header {
-  border-bottom: 1px solid var(--hairline);
-  background: color-mix(in srgb, var(--canvas) 80%, transparent);
-  backdrop-filter: saturate(140%) blur(10px);
+  background: var(--canvas);
   position: relative;
   z-index: 2;
 }
@@ -251,20 +235,26 @@ a:hover {
 }
 
 .brand img {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--r-sm);
 }
 
 .brand span {
   font-family: var(--font-display);
   font-size: var(--fs-body);
-  font-weight: 700;
+  font-weight: 800;
   letter-spacing: var(--track-tight);
 }
 
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-5);
+}
+
 .header-link {
-  font-size: var(--fs-caption);
+  font-size: var(--fs-body);
   font-weight: 600;
   color: var(--ink-muted);
   text-decoration: none;
@@ -274,28 +264,46 @@ a:hover {
   color: var(--ink);
 }
 
+.header-cta {
+  padding: 0.5rem 1.1rem;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: var(--accent-contrast);
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.header-cta:hover {
+  background: color-mix(in srgb, var(--accent) 88%, white);
+}
+
+.header-cta:active {
+  transform: scale(0.97);
+}
+
 .site-footer {
-  border-top: 1px solid var(--hairline);
-  margin-top: var(--sp-7);
-  padding-block: var(--sp-6);
+  background: var(--surface);
+  margin-top: var(--sp-9);
+  padding-block: var(--sp-8) var(--sp-6);
 }
 
 .site-footer .links {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--sp-5);
-  margin-bottom: var(--sp-4);
+  gap: var(--sp-3) var(--sp-6);
+  margin-bottom: var(--sp-5);
 }
 
 .site-footer .links a {
-  font-size: var(--fs-caption);
+  font-size: var(--fs-body);
   font-weight: 600;
-  color: var(--ink-muted);
+  color: var(--ink);
   text-decoration: none;
 }
 
 .site-footer .links a:hover {
-  color: var(--ink);
+  color: var(--accent-ink);
   text-decoration: underline;
 }
 
@@ -312,70 +320,71 @@ a:hover {
 .btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--sp-2);
-  padding: 0.8rem 1.5rem;
+  padding: 0.95rem 1.8rem;
   border-radius: var(--r-pill);
   font-family: var(--font-body);
-  font-size: var(--fs-body);
+  font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: var(--track-tight);
   text-decoration: none;
-  border: 1px solid transparent;
+  border: 0;
   transition: transform 160ms ease, background-color 160ms ease,
-    border-color 160ms ease;
+    color 160ms ease;
 }
 
 .btn:hover {
   transform: translateY(-1px);
 }
 
+.btn:active {
+  transform: scale(0.98);
+}
+
 .btn-primary {
   background: var(--accent);
   color: var(--accent-contrast);
-  box-shadow: 0 10px 30px -12px color-mix(in srgb, var(--accent) 70%, transparent);
 }
 
 .btn-primary:hover {
   background: color-mix(in srgb, var(--accent) 88%, white);
 }
 
-.btn-ghost {
-  color: var(--ink);
-  border-color: var(--hairline);
-  background: var(--surface);
+.btn-dark {
+  background: #120a03;
+  color: #fff4ea;
 }
 
-.btn-ghost:hover {
-  border-color: color-mix(in srgb, var(--ink) 30%, var(--hairline));
+.btn-dark:hover {
+  background: #2a1a0b;
+}
+
+.btn-soft {
+  background: rgba(18, 10, 3, 0.12);
+  color: #120a03;
+}
+
+.btn-soft:hover {
+  background: #120a03;
+  color: #fff4ea;
 }
 
 /* --------------------------------------------------------------------------
-   Hero
+   Hero — one flat field of brand orange, the cards as the picture
    -------------------------------------------------------------------------- */
 
 .hero {
-  position: relative;
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(2rem, 4vw, 3rem);
+  background: var(--accent);
+  color: #120a03;
+  padding-block: clamp(3rem, 7vw, 6rem);
   overflow: hidden;
-}
-
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: -30% 0 auto;
-  height: 160%;
-  background: var(--glow);
-  pointer-events: none;
-}
-
-.hero .container {
-  position: relative;
 }
 
 .hero-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-  gap: var(--sp-8);
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+  gap: var(--sp-7);
   align-items: center;
 }
 
@@ -384,238 +393,176 @@ a:hover {
 }
 
 .hero h1 {
-  font-size: var(--fs-display);
+  font-size: clamp(2.75rem, 1rem + 6.4vw, 6.25rem);
   font-weight: 800;
-  letter-spacing: var(--track-display);
-  line-height: 1.02;
-}
-
-.hero h1 em {
-  font-style: normal;
-  color: var(--accent-ink);
+  letter-spacing: -0.045em;
+  line-height: 0.96;
 }
 
 .hero .lead {
   margin-top: var(--sp-5);
-  font-size: var(--fs-lead);
-  color: var(--ink-muted);
-  max-width: 46ch;
+  font-size: clamp(1.15rem, 1rem + 0.6vw, 1.5rem);
+  line-height: 1.45;
+  max-width: 40ch;
 }
 
 .hero .actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--sp-4);
+  gap: var(--sp-3);
   margin-top: var(--sp-6);
 }
 
-/* Pre-launch availability. Deliberately not a button — it is a status, and
-   dressing it as a peer of the CTA is what made the old hero read as a
-   row of interchangeable pills. */
-.status {
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  margin-top: var(--sp-5);
-  font-size: var(--fs-caption);
-  color: var(--ink-muted);
+.hero .fine {
+  margin-top: var(--sp-4);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--accent);
-  flex: none;
-  animation: pulse 2.4s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-    box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent);
-  }
-  50% {
-    opacity: 0.65;
-    box-shadow: 0 0 0 6px transparent;
-  }
-}
-
-/* Hero visual: three real cards from the game, fanned like a hand pulled
-   from a binder. Wide spread plus a slight per-card lift on hover reads as
-   a deck you could riffle through, not a static product shot. */
+/* Three real cards from the game, fanned like a hand pulled from a binder. */
 .card-stack {
   position: relative;
-  width: 400px;
-  height: 380px;
+  width: 100%;
+  max-width: 400px;
+  height: 440px;
   margin-inline: auto;
 }
 
 .card-stack .card {
   position: absolute;
-  width: 216px;
-  height: 302px;
-  border-radius: 10px;
-  border: 1px solid var(--hairline);
+  width: 62%;
+  aspect-ratio: 251 / 351;
+  border-radius: 12px;
   background-color: var(--surface);
   background-size: cover;
   background-position: center;
-  box-shadow: var(--elevation-2);
   transition: transform 260ms ease;
 }
 
 .card-stack .card-a {
-  left: -6px;
-  top: 66px;
-  transform: rotate(-20deg);
+  left: -4%;
+  top: 16%;
+  transform: rotate(-18deg);
   background-image: url("assets/cards/luffy.jpg");
 }
 
 .card-stack .card-b {
-  left: 178px;
-  top: 40px;
-  transform: rotate(16deg);
+  left: 44%;
+  top: 12%;
+  transform: rotate(15deg);
   background-image: url("assets/cards/yamato.jpg");
 }
 
 .card-stack .card-c {
-  left: 86px;
-  top: 4px;
+  left: 19%;
+  top: 0;
   transform: rotate(-3deg);
   background-image: url("assets/cards/zoro.jpg");
 }
 
 .card-stack:hover .card-a {
-  transform: rotate(-26deg) translate(-10px, 4px);
+  transform: rotate(-24deg) translate(-10px, 4px);
 }
 
 .card-stack:hover .card-b {
-  transform: rotate(22deg) translate(10px, 4px);
+  transform: rotate(21deg) translate(10px, 4px);
 }
 
 .card-stack:hover .card-c {
   transform: rotate(-3deg) translateY(-10px);
 }
 
-
 /* --------------------------------------------------------------------------
-   Features — weighted bento, deliberately uneven row structure
+   Features — a statement and six plain rows, no cards
    -------------------------------------------------------------------------- */
 
+.features {
+  padding-block: clamp(4rem, 9vw, 8rem);
+}
+
 .section-head {
-  max-width: 52ch;
-  margin-bottom: var(--sp-6);
+  max-width: 14em;
+  margin-bottom: var(--sp-8);
 }
 
 .section-head h2 {
-  font-size: var(--fs-h2);
+  font-size: clamp(2.25rem, 1.2rem + 3.6vw, 4.5rem);
   font-weight: 800;
-  letter-spacing: var(--track-display);
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
-.section-head p {
-  margin-top: var(--sp-3);
-  color: var(--ink-muted);
-}
-
-.features {
-  padding-block: clamp(2rem, 5vw, 3.5rem);
-}
-
-.bento {
+.feature-list {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: var(--sp-4);
+  gap: var(--sp-7) var(--sp-8);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.tile {
-  background: var(--surface);
-  border: 1px solid var(--hairline);
-  border-radius: var(--r-lg);
-  padding: var(--sp-5);
-  box-shadow: var(--elevation-1);
-}
-
-.tile h3 {
-  font-size: var(--fs-h3);
-  font-weight: 700;
-  letter-spacing: var(--track-tight);
-  margin-bottom: var(--sp-2);
-}
-
-.tile p {
-  color: var(--ink-muted);
-  font-size: var(--fs-body);
-}
-
-.tile svg {
-  width: 26px;
-  height: 26px;
-  margin-bottom: var(--sp-4);
-  color: var(--accent-ink);
-}
-
-/* Row 1 — 4 + 2 */
-.tile-lead {
-  grid-column: span 4;
-  background: var(--surface-high);
-  padding: var(--sp-6);
-}
-
-.tile-lead h3 {
-  font-size: var(--fs-h2);
+.feature h3 {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
   font-weight: 800;
-  letter-spacing: var(--track-display);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
   margin-bottom: var(--sp-3);
 }
 
-.tile-lead p {
-  font-size: var(--fs-lead);
-  max-width: 42ch;
+.feature p {
+  font-size: 1.1875rem;
+  max-width: 38ch;
 }
 
-.tile-lead svg {
-  width: 32px;
-  height: 32px;
+.feature-lead {
+  grid-column: 1 / -1;
 }
 
-.tile-catalog {
-  grid-column: span 2;
+.feature-lead h3 {
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.5rem);
 }
 
-/* Row 2 — 2 + 2 + 2 */
-.tile-third {
-  grid-column: span 2;
+.feature-lead p {
+  font-size: clamp(1.2rem, 1rem + 0.6vw, 1.5rem);
+  max-width: 44ch;
 }
 
-.tile-wishlist svg {
-  color: var(--hue-wishlist);
+/* --------------------------------------------------------------------------
+   Open the app — a full field with the one action
+   -------------------------------------------------------------------------- */
+
+.launch {
+  background: var(--surface-high);
+  padding-block: clamp(4rem, 9vw, 8rem);
 }
 
-.tile-trade svg {
-  color: var(--hue-trade);
+.launch h2 {
+  font-size: clamp(2.25rem, 1.2rem + 3.6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  max-width: 16em;
 }
 
-/* Row 3 — one full-width strip, laid out horizontally so it does not read as
-   another card in the same rhythm */
-.tile-strip {
-  grid-column: span 6;
+.launch p {
+  margin-top: var(--sp-4);
+  font-size: 1.25rem;
+  max-width: 46ch;
+}
+
+.launch .actions {
+  margin-top: var(--sp-6);
   display: flex;
-  align-items: center;
-  gap: var(--sp-5);
+  flex-wrap: wrap;
+  gap: var(--sp-3);
 }
 
-.tile-strip svg {
-  margin-bottom: 0;
-  flex: none;
-  width: 30px;
-  height: 30px;
+.btn-outline {
+  background: var(--canvas);
+  color: var(--ink);
 }
 
-.tile-strip h3 {
-  margin-bottom: var(--sp-1);
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--canvas);
 }
 
 /* --------------------------------------------------------------------------
@@ -623,35 +570,58 @@ a:hover {
    -------------------------------------------------------------------------- */
 
 .credibility {
-  padding-block: clamp(1.5rem, 4vw, 2.5rem) clamp(2rem, 5vw, 4rem);
-}
-
-.credibility .panel {
-  border: 1px solid var(--hairline);
-  border-left: 3px solid var(--accent);
-  border-radius: var(--r-md);
-  background: var(--surface);
-  padding: var(--sp-6);
+  padding-block: clamp(4rem, 9vw, 8rem) 0;
 }
 
 .credibility h2 {
-  font-size: var(--fs-h2);
+  font-size: clamp(1.9rem, 1.1rem + 2.6vw, 3.25rem);
   font-weight: 800;
-  letter-spacing: var(--track-display);
-  margin-bottom: var(--sp-4);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  max-width: 20em;
+  margin-bottom: var(--sp-6);
+}
+
+.credibility .cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--sp-6);
 }
 
 .credibility p {
-  color: var(--ink-muted);
-  max-width: var(--measure-prose);
-}
-
-.credibility p + p {
-  margin-top: var(--sp-4);
+  font-size: 1.125rem;
 }
 
 .credibility a {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* --------------------------------------------------------------------------
+   More from the collective
+   -------------------------------------------------------------------------- */
+
+.more {
+  padding-block: clamp(3rem, 6vw, 5rem) 0;
+}
+
+.more h2 {
+  font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.25rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: var(--sp-4);
+}
+
+.more ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--sp-3);
+}
+
+.more a {
+  font-size: 1.25rem;
+  font-weight: 700;
 }
 
 /* --------------------------------------------------------------------------
@@ -710,55 +680,35 @@ a:hover {
 @media (max-width: 900px) {
   .hero-grid {
     grid-template-columns: minmax(0, 1fr);
-    gap: var(--sp-7);
   }
 
   .card-stack {
-    transform: scale(0.82);
-    transform-origin: left center;
+    height: 380px;
+    max-width: 340px;
     margin-inline: 0;
   }
 
-  .tile-lead,
-  .tile-catalog,
-  .tile-third {
-    grid-column: span 3;
-  }
-
-  .tile-strip {
-    grid-column: span 6;
+  .credibility .cols {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (max-width: 600px) {
-  /* On a phone the CTA belongs above the fold; decoration does not. */
-  .card-stack {
-    display: none;
-  }
-
-  .bento {
+  .feature-list {
     grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-6);
   }
 
-  .tile-lead,
-  .tile-catalog,
-  .tile-third,
-  .tile-strip {
-    grid-column: span 1;
-  }
-
-  .tile-strip {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--sp-3);
-  }
-
-  .tile-lead {
-    padding: var(--sp-5);
+  .header-link {
+    display: none;
   }
 
   .btn {
     width: 100%;
-    justify-content: center;
+  }
+
+  .card-stack {
+    height: 300px;
+    max-width: 270px;
   }
 }
